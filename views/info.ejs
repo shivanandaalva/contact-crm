@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+            <div style="width: 600px; display: table-cell;"> 
+                <h1>View</h1>
+                <p><%=name%></p>
+                <p><%=email%></p>
+                <p><%=phone%></p>
+                <p><%=address%></p>
+                <p><%=gst%></p>
+                <p><%=freq%></p>
+            </div>
+            <div style="display: table-cell;"> 
+                <br>
+                <button style="width:120px; height:100px" onclick="crm()">CRM</button>
+
+                </div>
+            </div>
+        </div>
+    
+
+    <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+            <div style="width: 600px; display: table-cell;"> 
+                <h1>Add</h1>
+    <p>Name:</p>
+    <input type="name" name="name" id="name"><br>
+    <p>Email:</p>
+    <input type="email" name="email" id="email"><br>
+    <p>Phone Number:</p>
+    <input type="number" name="phone" id="phone"><br>
+    <p>Address:</p>
+    <input type="text" name="address" id="address"><br>
+    <p>GST NO:</p>
+    <input type="text" name="gst" id="gst"><br>
+    <p>Frequency:</p>
+    <input type="number" name="freq" id="freq"><br><br>
+    <button onclick="add()">Add</button>
+            </div>
+            <div style="display: table-cell;"> <h1>Update/Delete</h1>
+                <p>Name:</p>
+                <input type="name" name="name1" id="name1" value="<%=name%>"><br>
+                <p>Email:</p>
+                <input type="email" name="email1" id="email1" value="<%=email%>"><br>
+                <p>Phone Number:</p>
+                <input type="number" name="phone1" id="phone1" value="<%=phone%>"><br>
+                <p>Address:</p>
+                <input type="text" name="address1" id="address1" value="<%=address%>"><br>
+                <p>GST NO:</p>
+                <input type="text" name="gst1" id="gst1" value="<%=gst%>"><br>
+                <p>Frequency:</p>
+                <input type="number" name="freq1" id="freq1" value="<%=freq%>"><br><br>
+                <button onclick="update()">Update</button>
+                <button onclick="del()">Delete</button>
+            
+            </div>
+        </div>
+    </div>
+    <script>
+        function add(){
+        let a=document.getElementById('email').value;
+        let b=document.getElementById('name').value;
+        let c=document.getElementById('phone').value;
+        let d=document.getElementById('address').value;
+        let e=document.getElementById('gst').value;
+        let f=document.getElementById('freq').value;
+            window.location.href=`/add?name=${b}&email=${a}&phone=${c}&address=${d}&gst=${e}&freq=${f}`;
+        }
+        function update(){
+        let a=document.getElementById('email1').value;
+        let b=document.getElementById('name1').value;
+        let c=document.getElementById('phone1').value;
+        let d=document.getElementById('address1').value;
+        let e=document.getElementById('gst1').value;
+        let f=document.getElementById('freq1').value;
+        let g=`<%=userid%>`;
+            window.location.href=`/update?id=${g}&name=${b}&email=${a}&phone=${c}&address=${d}&gst=${e}&freq=${f}`;
+           
+        }
+        function del(){
+            window.location.href=`/delete/<%=userid%>`;
+        }
+        function crm(){
+            let id=`<%=userid%>`;
+            window.location.href=`/crm/<%=userid%>`;
+        }
+    </script>
+</body>
+</html>

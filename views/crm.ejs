@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Messages</h4>
+    
+      
+<p><%=messages%></p>
+         
+      
+   
+
+        <h4>ADD</h4>
+        <p>Message:</p>
+        <input type="text" name="message" id="message"><br><br>
+        <button onclick="addcrm()">ADD</button>
+
+        <script>
+            function addcrm(){
+                let a=document.getElementById('message').value;
+                window.location.href=`/addcrm/${a}/<%=userid%>`;
+            }
+        </script>
+</body>
+</html>

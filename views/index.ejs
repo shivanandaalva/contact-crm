@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM</title>
+</head>
+<body>
+    <p>Email:</p>
+    <input type="email" name="email" id="email"><br>
+    <p>Password:</p>
+    <input type="password" name="password" id="password"><br><br>
+
+    <button onclick="reg()">Register</button>
+    <button onclick="login()">Login</button>
+<script>
+    function reg(){
+        var a=document.getElementById('email').value;
+        var b=document.getElementById('password').value;
+          window.location.href=`/register/${a}/${b}`;
+    }
+    function login(){
+        var a=document.getElementById('email').value;
+        var b=document.getElementById('password').value;
+          window.location.href=`/login/${a}/${b}`;
+    }
+
+</script>
+</body>
+</html>
