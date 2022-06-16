@@ -7,23 +7,38 @@
     <title>Document</title>
 </head>
 <body>
+    <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+            <div style="width: 400px; display: table-cell;"> 
     <h4>Messages</h4>
     
-      
-<p><%=messages%></p>
-         
-      
+    <% for(var i=0;i<=20;i++) {  %>    
+<p><%=messages[i]%></p>
+<% }  %>   
+</div>
+<div style="display: table-cell;"> 
+    <h4>Timestamp</h4>
+    <% for(var i=0;i<=20;i++) {  %>    
+        <p><%=timestamp[i]%></p>
+        <% }  %>   
+</div>
+</div>
+</div>
+
    
 
         <h4>ADD</h4>
         <p>Message:</p>
         <input type="text" name="message" id="message"><br><br>
+
         <button onclick="addcrm()">ADD</button>
 
         <script>
             function addcrm(){
                 let a=document.getElementById('message').value;
+               
                 window.location.href=`/addcrm/${a}/<%=userid%>`;
+               
             }
         </script>
 </body>

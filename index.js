@@ -8,6 +8,7 @@ const bodyparser = require('body-parser')
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./crm.db');
 
+
 //View Engine Setup
 app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'ejs');
@@ -101,17 +102,26 @@ app.get('/delete/:userid', (req, res) => {
 
 app.get('/crm/:userid', (req, res) => {
   let userid = req.params.userid;
-  
+  let arr=[];
+  let time=[]
   db.serialize(() => {
 
    
-    db.each(`SELECT * FROM crm where userid=?`,[userid], (err, row) => {
+    db.all(`SELECT * FROM crm where userid=?`,[userid], (err, row) => {
 // console.log(row.message+":"+row.timestamp+":"+row.userid)
+Object.keys(row).forEach(el => {
+  // console.log(el, row[el]);
+  arr.push(row[el].message);
+  time.push(row[el].timestamp);
+});
 
+// for(var i=0;i<5;i++){
+// store('messagesdata', {data: row.message});
+// }
+console.log(arr);
+// console.log(store('messagesdata'));
+res.render('crm',{userid:userid,messages:arr,timestamp:time})
 
-res.render('crm',{userid:userid,messages:row.message})
-
-   
   });
 
 }); 
@@ -123,10 +133,13 @@ app.get('/addcrm/:message/:userid', (req, res) => {
   let message= req.params.message;
   let ts = Date.now();
   let userid = req.params.userid;
+
   db.serialize(() => {
     db.run(`INSERT INTO crm ('message','timestamp','userid') VALUES (?,?,?)`,[message,ts,userid]);
   });
     res.send("Data Inserted Successfully")
+   
+
 })
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
